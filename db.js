@@ -238,39 +238,6 @@ cmd({
 });
 */
 
-cmd({
-    pattern: "menu3",
-    react: "🛸",
-    alias: ["panel", "commands"],
-    desc: "Get bot's command list.",
-    category: "main",
-    use: '.menu',
-    filename: __filename
-}, 
-async(conn, mek, m, {from, l, quoted, body, isCmd, umarmd, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
-    try {
-        let menuc = `┌───[  Didula  MD V2]\n\n   *DOWNLOAD COMMANDS MENU*\n\n`;
-        
-        for (let i = 0; i < commands.length; i++) { 
-            if (commands[i].category === 'download' && !commands[i].dontAddCommandList) {
-                menuc += `*👨🏼‍🚀Command :* ${commands[i].pattern}\n*💭Desc :* ${commands[i].desc}\n*🙇🏻‍♂️Use:* ${commands[i].use}\n\n`;
-            }
-        }
-
-        const messageOptions = {
-            image: { url: config.ALIVE_IMG },
-            caption: menuc,
-            footer: "*Didula MD V2 💚*",
-            mentions: ["120363343196447945@newsletter"]
-        };
-
-        await conn.sendMessage(from, messageOptions, { quoted: mek });
-        
-    } catch(e) {
-        console.log(e);
-        reply(`${e}`);
-    }
-});
 
 //   ======================== song Video =========================
 
