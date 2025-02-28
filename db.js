@@ -239,6 +239,56 @@ cmd({
 */
 
 
+cmd({
+    pattern: "downloadmenu2",
+    desc: "Get npm info",
+    category: "search",
+    filename: __filename
+},
+async (conn, mek, m, { from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply }) => {
+    try {
+        let msg = `┌───[  Didula  MD V2]\n\n*DOWNLOAD COMMANDS MENU*\n\n`;
+        let menu = ''; // Initialize the menu variable
+
+        for (let i = 0; i < commands.length; i++) {
+            if (commands[i].category === 'download') {
+                if (!commands[i].dontAddCommandList) {
+                    menu += `*👨🏼‍🚀Command :* ${commands[i].pattern}\n*💭Desc :* ${commands[i].desc}\n*🙇🏻‍♂️Use:* ${commands[i].use}\n\n`;
+                }
+            }
+        }
+
+        if (menu.length === 0) {
+            // If no commands were found
+            reply(`*_Can't find your npm package._*`);
+            return;
+        }
+
+        msg += menu; // Append the menu to the message
+
+        const fdChannel = {
+            newsletterJid: "120363343196447945@newsletter",
+            newsletterName: "Didula MD V2",
+            serverMessageId: 999
+        };
+        const contextMsg = {
+            forwardingScore: 999,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: fdChannel
+        };
+        const msgBody = {
+            image: { url: config.ALIVE_IMG }, // Assuming config.ALIVE_IMG is defined
+            caption: msg,
+            contextInfo: contextMsg
+        };
+
+        await conn.sendMessage(from, msgBody, { quoted: mek });
+    } catch (e) {
+        console.log(e);
+        reply(`*_An error occurred while processing your request._*`);
+    }
+});
+
 //   ======================== song Video =========================
 
 cmd({
